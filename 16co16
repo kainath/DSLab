@@ -1,0 +1,4 @@
+#include<stdio.h>
+#include<ctype.h> //for isaplha() function
+
+typedef struct conversion
