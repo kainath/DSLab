@@ -1,89 +1,73 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define MAX_SIZE 20
-
-int queue[MAX_SIZE],front=-1,rear=-1;
-
+#define MAXSIZE 10
+int Queue[MAXSIZE],front=-1,rear=-1;
 int isFull()
 {
-	
-	return rear==MAX_SIZE-1;
-	
+	//return 1 if  is full else return 0
+	if(rear == MAXSIZE-1)
+		return 1;
+	else
+		return 0;
 }
-
-int isEmpty()
+int isEmpty(){
+	//return 1 if Queue is empty else return -0
+	if(front == -1 && rear == -1)
+		return 1;
+	else 
+		return 0;
+}
+int peek()
 {
-
-	return rear==-1 && front==-1;
-	
-}
-
-int display()
-{
-
-	return queue[front];
-}
-
+	//return element at the front of Queue 
+	return Queue[front];
+}	
 void insertQueue(int d)
 {
 	if(!isFull())
 	{
 		if(isEmpty())
 		{
-		front++;
-	    }
-	rear++;
-	queue[rear]=d;
-	printf("YOUR ELEMENT IS SUCESSFULLY INSERTED=%d",queue[rear]
-	);
-    }	
+			front++;
+		}
+		Queue[++rear]=d;
+		printf("ELEMENT INSERT SUCCESSFULLY %d",d);
+	}
 	else
-    printf("Queue is full element cannot be inserted");	
+		printf("QUEUE IS FULL ");
 }
-
-
 void deleteQueue()
 {
-	int d;
 	if(!isEmpty())
 	{
-	d=queue[front];
-	  if(front==rear)
-	  {
-		  front=rear=-1;
-	   }
-	 }
+		int d=Queue[front];
+		if(front==rear)
+			front=rear=-1;
+		else 
+			front++;
+		printf("THE ELEMENT DELETED IS %d",d);
+	}	
 	else
-	{
-	front++;
-    }
-	printf("THE ELEMENT DELETED IS %d",d);
-    
-    
-}	
-	
-
-
-int main(){
+		printf("QUEUE IS EMPty");
+}
+int main()
+{
 	int choice,e;
-	do
+	while(1)
 	{
-		
-		printf("\nEnter\n1.DISPLAY\n2.Insert\n3.delete\n4.Exit\n");
-		printf("Enter your choice: ");
-		scanf("%d",&choice);	
-		switch(choice){
+	    printf("1.Display 2.INSERT 3.DELETE 4.EXIT\n");
+		printf("ENTER CHOICE");
+		scanf("%d",&choice);
+		switch(choice)
+		{
 			case 1:
-			    if(isEmpty())
-			    printf("queue is empty");
-			    else
-			    {
-				e=display();
-				printf("\nElement at the front of queue is : %d",e);
-			    }
+				if(isEmpty())
+					printf("QUEUE IS EMPTY");
+				else
+					printf("ELEMENT IS FRONT OF QUEUE IS %d",peek());
 				break;
 			case 2:
-				printf("\nEnter the elment to be inserted: ");
+				printf("ENTER ELEMENT TO INSERT");
 				scanf("%d",&e);
 				insertQueue(e);
 				break;
@@ -94,9 +78,7 @@ int main(){
 				exit(0);
 				break;
 			default:
-				printf("\nInvalid Choice");
-				break;				
+				printf("ENTER INVALID CHOICE");
 		}
-	}while(1);
-	return 0;
+	}
 }
